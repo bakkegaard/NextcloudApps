@@ -1,10 +1,10 @@
 let apps_url = 
   [
+	"nextcloud/calendar",
+	"nextcloud/contacts",
 	"nextcloud/deck",
 	"nextcloud/news",
 	"nextcloud/notes",
-	"nextcloud/calendar",
-	"nextcloud/contacts",
 	"nextcloud/passman",
 	"nextcloud/polls",
 	"nextcloud/spreed",
@@ -22,12 +22,15 @@ $(function(){
 		}
 	})()
 
+	let normal_direction = true;
+
 	$("th").click(function(e){
 		let name = e.target.innerHTML;
 		let selector = "";
 		if(name == "Name") selector="name";
 		else if (name == "Stars") selector = "stargazers_count";
 		else if (name == "Watchers") selector = "subscribers_count";
+
 		table.apps.sort(function(e1,e2){
 					
 			if(e1[selector]<e2[selector]){
