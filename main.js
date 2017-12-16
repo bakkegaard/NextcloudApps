@@ -12,14 +12,18 @@ let apps_url =
 
 $(function(){
 	(function(){
-		let temp = []
-		let counter = 0;
-		for(let i=0;i<apps_url.length;i++){
-			$.ajax( "https://api.github.com/repos/"+apps_url[i])
+
+		apps_url.forEach(function(element){
+
+			let URL = "https://api.github.com/repos/" + element;
+
+			$.ajax(URL)
 				.done(function(data) {
+
 					table.apps.push(data);
+
 				})
-		}
+		})
 	})()
 
 	let normal_direction = true;
