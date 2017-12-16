@@ -1,7 +1,14 @@
 let apps_url = 
-  ["nextcloud/deck",
+  [
+	"nextcloud/calendar",
 	"nextcloud/contacts",
-	"nextcloud/calendar"]
+	"nextcloud/deck",
+	"nextcloud/news",
+	"nextcloud/notes",
+	"nextcloud/passman",
+	"nextcloud/polls",
+	"nextcloud/spreed",
+  ]
 
 
 
