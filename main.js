@@ -1,14 +1,14 @@
 let apps_url = 
-  [
-	"nextcloud/calendar",
-	"nextcloud/contacts",
-	"nextcloud/deck",
-	"nextcloud/news",
-	"nextcloud/notes",
-	"nextcloud/passman",
-	"nextcloud/polls",
-	"nextcloud/spreed",
-  ]
+	[
+		"nextcloud/calendar",
+		"nextcloud/contacts",
+		"nextcloud/deck",
+		"nextcloud/news",
+		"nextcloud/notes",
+		"nextcloud/passman",
+		"nextcloud/polls",
+		"nextcloud/spreed",
+	]
 
 $(function(){
 	(function(){
@@ -22,6 +22,8 @@ $(function(){
 
 					table.apps.push(data);
 
+					table.sort("name",true);
+
 				})
 		})
 	})()
@@ -34,30 +36,49 @@ $(function(){
 		if(name == "Name") selector="name";
 		else if (name == "Stars") selector = "stargazers_count";
 		else if (name == "Watchers") selector = "subscribers_count";
-
-		table.apps.sort(function(e1,e2){
-					
-			if(e1[selector]<e2[selector]){
-				return -1;
-			}
-			else if(e1[selector]>e2[selector]){
-				return 1;
-			}
-			else{
-				return 0;
-			}
-		})
-			
+		table.sort(selector);
 	})
 
 	table = new Vue({
 		el: '#table',
 		data: {
-			apps: []
+			apps: [],
+			sort_by: "name",
+			descending: true
 		},
 		methods:{
 			getURL:function(app){
 				return "https://github.com/"+ app.full_name;
+			},
+			sort:function(sort_by,ascending){
+				console.log(ascending);
+				let factor = 1;
+				if(this.sort_by===sort_by){
+					this.ascending= !this.ascending;
+				}
+				else this.ascending = true;
+				if(ascending!==undefined){
+					this.ascending=ascending;
+				}
+				if(!this.ascending) factor = -1;
+
+				if(sort_by==="name") factor *= -1;
+
+				this.sort_by=sort_by;
+				this.apps.sort(function(e1,e2){
+
+					let selector = sort_by;
+
+					if(e1[selector]<e2[selector]){
+						return 1*factor;
+					}
+					else if(e1[selector]>e2[selector]){
+						return -1*factor;
+					}
+					else{
+						return 0;
+					}
+				})
 			}
 		}
 
