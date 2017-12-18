@@ -52,7 +52,7 @@ $(function(){
 		table.sort(selector);
 	})
 
-	table = new Vue({
+	let table = new Vue({
 		el: '#table',
 		data: {
 
