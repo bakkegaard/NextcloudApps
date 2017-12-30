@@ -23,7 +23,7 @@
 			</thead>
 			<tbody id = "table">
 				<tr v-for="app in apps">
-					<td><a v-bind:href="getURL(app)">{{app.name}}</a></td>
+					<td><a v-bind:href="getURL(app)">{{toUpper(app.name)}}</a></td>
 					<td>{{app.stargazers_count}}</td>
 					<td>{{app.subscribers_count}}</td>
 				</tr>

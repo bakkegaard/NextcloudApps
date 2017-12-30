@@ -67,6 +67,11 @@ $(function(){
 		},
 		methods:{
 
+			//Make first letter in string upper case
+			toUpper: function(s){
+				return s.charAt(0).toUpperCase()+ s.slice(1);
+			},
+
 			//Function for creating the link to Github
 			getURL:function(app){
 
